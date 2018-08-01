@@ -1,0 +1,22 @@
+{
+    "name": "yljphp/validation",
+    "description": "表单验证扩展",
+    "keywords": ["request", "validation"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "杨立景",
+            "email": "yanglijing@mafengwo.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yljphp\\Validation\\": "src/"
+        },
+        "files":["src/helpers.php"]
+    }
+}
