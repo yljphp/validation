@@ -136,10 +136,17 @@ function value($value)
 /**
  * 验证表单请求参数
  * @param RequestInterface $request
- * @return Validator
+ * @param null $errors
+ * @return bool
  */
-function request_validate(RequestInterface $request){
+function request_validate(RequestInterface $request,&$errors = null){
 
-    $factory = new ValidateFactory();
-    return $factory->make($request->getRequestData(),$request->rules(),$request->messages(),$request->attributes());
+    $factory = new ValidatorFactory();
+    $validator = $factory->handle($request);
+    if ($validator->passes()){
+        return true;
+    }else{
+        $errors = $validator->errors();
+        return false;
+    }
 }

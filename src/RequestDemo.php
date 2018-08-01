@@ -1,13 +1,13 @@
-# 表单验证扩展
+<?php
+/**
+ * Created by PhpStorm.
+ * User: yanglijing
+ * Date: 2018/8/1
+ * Time: 下午1:35
+ */
 
->大部分代码基于网络，初版v1.0可能存在很多bug
+namespace Yljphp\Validation;
 
-
-### 使用方法
-
-1,自己定义request规则、提示信息等
-
-```php
 
 class RequestDemo implements RequestInterface
 {
@@ -43,16 +43,5 @@ class RequestDemo implements RequestInterface
         ];
     }
 
+
 }
-
-
-```
-
-2. 验证表单请求参数
-
-```php
-
-request_validate(new RequestDemo(),$errors)
-
-
-```

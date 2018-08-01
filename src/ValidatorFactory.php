@@ -5,7 +5,7 @@ namespace Yljphp\Validation;
 
 use Closure;
 
-class ValidateFactory
+class ValidatorFactory
 {
     /**
      * The Translator implementation.
@@ -61,13 +61,23 @@ class ValidateFactory
      *
      * @param \Yljphp\Validation\TranslatorInterface $translator
      *
-     * @return \Yljphp\Validation\ValidateFactory
+     * @return \Yljphp\Validation\ValidatorFactory
      */
     public function __construct(TranslatorInterface $translator = null)
     {
         $this->translator = $translator ?: new Translator();
     }
 
+
+    /**
+     * handle
+     * @param RequestInterface $request
+     * @return Validator
+     */
+    public function handle(RequestInterface $request)
+    {
+        return $this->make($request->getRequestData(),$request->rules(),$request->messages(),$request->attributes());
+    }
     /**
      * Create a new Validator instance.
      *
@@ -78,7 +88,7 @@ class ValidateFactory
      *
      * @return \Yljphp\Validation\Validator
      */
-    public function make(array $data, array $rules, array $messages = [], array $customAttributes = [])
+    private function make(array $data, array $rules, array $messages = [], array $customAttributes = [])
     {
         // The presence verifier is responsible for checking the unique and exists data
         // for the validator. It is behind an interface so that multiple versions of
@@ -93,6 +103,8 @@ class ValidateFactory
 
         return $validator;
     }
+    
+    
 
     /**
      * Add the extensions to a validator instance.
